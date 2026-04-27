@@ -3,6 +3,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Features from "@/components/Features";
 import CategoryGrid from "@/components/CategoryGrid";
 import ProductCarousel from "@/components/ProductCarousel";
+import DesignGallery from "@/components/DesignGallery";
 
 export default function Home() {
   return (
@@ -11,14 +12,7 @@ export default function Home() {
       <WhyChooseUs />
       <Features />
       
-      {/* "DISEÑO QUE PERDURA" Banner Section */}
-      <section className="relative h-[400px] w-full bg-[#1a1a1a] flex flex-col items-center justify-center my-12">
-        <div className="absolute inset-0 bg-black/60 z-0"></div>
-        <h2 className="text-white text-3xl md:text-5xl font-light tracking-[0.3em] z-10 text-center mb-4 uppercase">
-          DISEÑO QUE PERDURA
-        </h2>
-        <div className="z-10 w-16 h-[1px] bg-white/50" />
-      </section>
+      <DesignGallery />
 
       <CategoryGrid />
       <ProductCarousel />
