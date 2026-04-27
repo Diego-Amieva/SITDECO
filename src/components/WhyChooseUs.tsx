@@ -3,10 +3,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// Utilizando las imágenes disponibles de la galería como placeholders temporales
-import img1 from "@/assets/placeholders/feature_robust.png";
-import img2 from "@/assets/placeholders/feature_weather.png";
-import img3 from "@/assets/placeholders/gallery_chair.png";
+import img1 from "@/assets/unique/asesoria_personalizada.png";
+import img2 from "@/assets/unique/planificacion_3d.png";
+import img3 from "@/assets/unique/calidad_comercial.png";
 
 const features = [
   {
@@ -31,7 +30,7 @@ export default function WhyChooseUs() {
     <section className="w-full bg-white py-16 md:py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-center text-2xl md:text-4xl font-light tracking-[0.2em] uppercase text-[#1a1a1a] mb-12">
-          ¿POR QUÉ ELEGIR SITDECO?
+          LO QUE NOS HACE ÚNICOS
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

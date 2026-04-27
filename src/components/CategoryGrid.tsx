@@ -21,7 +21,7 @@ export default function CategoryGrid() {
   return (
     <section className="py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
       <div className="mb-12">
-        <h2 className="text-2xl tracking-[0.15em] font-light uppercase text-[#1a1a1a] mb-2">Set The Stage</h2>
+        <h2 className="text-2xl tracking-[0.15em] font-light uppercase text-[#1a1a1a] mb-2">EXPLORA NUESTRAS COLECCIONES</h2>
         <div className="w-16 h-[1px] bg-gray-400" />
       </div>
 

@@ -31,7 +31,7 @@ export default function ProductCarousel() {
     <section className="py-24 px-6 md:px-12 max-w-[1400px] mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-2xl tracking-[0.15em] font-light uppercase text-[#1a1a1a] mb-4">
-          Featured Best Sellers
+          PRODUCTOS DESTACADOS
         </h2>
         <div className="w-16 h-[1px] bg-gray-400 mx-auto" />
       </div>
