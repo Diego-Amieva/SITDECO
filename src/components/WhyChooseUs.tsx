@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 import img1 from "@/assets/unique/asesoria_personalizada.png";
 import img2 from "@/assets/unique/planificacion_3d.png";
@@ -37,7 +36,7 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="relative h-[400px] md:h-[450px] lg:h-[550px] w-full overflow-hidden group cursor-pointer"
+              className="relative h-96 md:h-[450px] w-full overflow-hidden group cursor-pointer"
             >
               {/* Background Image */}
               <Image
@@ -50,20 +49,18 @@ export default function WhyChooseUs() {
               {/* Overlay: Cambia de oscuro a un tono azulado profundo en hover */}
               <div className="absolute inset-0 bg-black/40 transition-colors duration-500 ease-out group-hover:bg-[#12223a]/80 z-10" />
               
-              {/* Content Container */}
-              <div className="absolute inset-0 z-20 p-8 flex flex-col justify-end items-center text-center">
-                {/* Grupo de texto que se desplaza hacia arriba */}
-                <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-8 flex flex-col items-center relative w-full">
-                  <h3 className="text-white text-base md:text-lg font-medium tracking-[0.15em] uppercase">
-                    {feature.title}
-                  </h3>
-                  
-                  {/* Texto descriptivo: Fade in y posicionado justo debajo del título */}
-                  <div className="absolute top-full mt-4 w-full px-2 md:px-4 opacity-0 transform translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                    <p className="text-white/90 text-sm font-light leading-relaxed tracking-wide">
-                      {feature.text}
-                    </p>
-                  </div>
+              {/* Content Container (Centered Flexbox) */}
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 md:p-12 text-center text-white transition-all duration-500">
+                {/* Title: Moves up on hover */}
+                <h3 className="text-white text-base md:text-lg font-semibold tracking-[0.15em] uppercase transform transition-transform duration-500 ease-out group-hover:-translate-y-4">
+                  {feature.title}
+                </h3>
+                
+                {/* Description: Fades in and moves from bottom slightly */}
+                <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-4 group-hover:translate-y-0 mt-4 px-4">
+                  <p className="text-white/90 text-sm md:text-base font-light leading-relaxed tracking-wide [text-wrap:balance]">
+                    {feature.text}
+                  </p>
                 </div>
               </div>
             </div>
