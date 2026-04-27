@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Search, ChevronDown } from "lucide-react";
+import { Search, ChevronDown, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoSvg from "@/assets/logo.svg";
 

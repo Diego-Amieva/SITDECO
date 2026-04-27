@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { BookOpen } from 'lucide-react';
 import heroImage from '@/assets/placeholders/hero_dining_sunset.png';
 
 export default function Hero() {
