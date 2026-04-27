@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 // Import images
@@ -19,28 +20,32 @@ const products = [
     name: "Camastro de Teca Blanca", 
     price: "$1,850", 
     imageStandard: imgLoungerAngle,
-    imageHover: imgLoungerFrontal
+    imageHover: imgLoungerFrontal,
+    href: "/productos/camastro-lago"
   },
   { 
     id: 2, 
     name: "Sofá Modular de Terraza", 
     price: "$4,200", 
     imageStandard: imgSofaAngle,
-    imageHover: imgSofaFrontal
+    imageHover: imgSofaFrontal,
+    href: "/productos/sofa-modular-toro"
   },
   { 
     id: 3, 
     name: "Silla Comedor Tejido", 
     price: "$950", 
     imageStandard: imgChairAngle,
-    imageHover: imgChairFrontal
+    imageHover: imgChairFrontal,
+    href: "/productos/silla-tejida-alba"
   },
   { 
     id: 4, 
     name: "Sombrilla Diseño Océano", 
     price: "$2,100", 
     imageStandard: imgUmbrellaAngle,
-    imageHover: imgUmbrellaFrontal
+    imageHover: imgUmbrellaFrontal,
+    href: "/productos/sombrilla-monarca"
   },
 ];
 
@@ -58,14 +63,14 @@ export default function FeaturedProducts() {
         {products.map((product) => (
           <motion.div
             key={product.id}
-            className="group flex flex-col cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
           >
-            {/* Image Container */}
-            <div className="relative aspect-[4/5] bg-[#f8f8f8] mb-6 overflow-hidden">
+            <Link href={product.href} className="group flex flex-col cursor-pointer h-full">
+              {/* Image Container */}
+              <div className="relative aspect-[4/5] bg-[#f8f8f8] mb-6 overflow-hidden">
               {/* Standard Image (Angle) */}
               <Image
                 src={product.imageStandard}
@@ -96,6 +101,7 @@ export default function FeaturedProducts() {
                 Ver Detalles
               </button>
             </div>
+            </Link>
           </motion.div>
         ))}
       </div>
