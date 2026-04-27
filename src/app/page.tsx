@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import Features from "@/components/Features";
 import CategoryGrid from "@/components/CategoryGrid";
 import ProductCarousel from "@/components/ProductCarousel";
@@ -7,6 +8,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Hero />
+      <WhyChooseUs />
       <Features />
       
       {/* "BUILT DIFFERENT" Banner Section */}
