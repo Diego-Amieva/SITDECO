@@ -10,6 +10,8 @@ import logoSvg from "@/assets/logo.svg";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [activeMobileAccordion, setActiveMobileAccordion] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,23 +25,44 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
-    { name: "SILLAS Y BANCOS", href: "#" },
-    { name: "MESAS", href: "#" },
-    { name: "EXTERIOR Y JARDÍN", href: "#" },
-    { name: "ESPECILIZADOS", href: "#" },
+    { 
+      name: "SILLAS Y BANCOS", 
+      href: "#",
+      title: "SILLAS",
+      subcategories: ["Sillas de Madera", "Sillas Tubulares", "Sillas Polipropileno"]
+    },
+    { 
+      name: "MESAS", 
+      href: "#",
+      title: "MESAS",
+      subcategories: ["Mesas Completas", "Bases para mesa"]
+    },
+    { 
+      name: "EXTERIOR Y JARDÍN", 
+      href: "#",
+      title: "EXTERIOR Y JARDÍN",
+      subcategories: ["Sombrillas", "Sillas de tejido y aluminio"]
+    },
+    { 
+      name: "ESPECILIZADOS", 
+      href: "#",
+      title: "ESPECILIZADOS",
+      subcategories: ["Comedores Industriales", "Accesorios"]
+    },
   ];
 
   return (
     <header 
       className={`w-full fixed top-0 z-50 transition-all duration-500 ease-in-out flex flex-col ${
-        isScrolled 
-          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100" 
+        isScrolled || isMegaMenuOpen
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100" 
           : "bg-transparent shadow-none border-transparent"
       }`}
+      onMouseLeave={() => setIsMegaMenuOpen(false)}
     >
       {/* Top Bar */}
       <div className={`w-full transition-colors duration-500 px-6 md:px-12 py-2 flex items-center justify-between text-xs ${
-        isScrolled ? "bg-black text-white" : "bg-black/20 text-white backdrop-blur-sm"
+        isScrolled || isMegaMenuOpen ? "bg-black text-white" : "bg-black/20 text-white backdrop-blur-sm"
       }`}>
         <div className="flex items-center">
           <button aria-label="Buscar" className="hover:text-gray-300 transition-colors">
@@ -62,7 +85,7 @@ export default function Navbar() {
               alt="SITDECO Logo"
               fill
               className={`object-contain object-left transition-all duration-500 ${
-                isScrolled ? "" : "brightness-0 invert"
+                isScrolled || isMegaMenuOpen ? "" : "brightness-0 invert"
               }`}
               priority
             />
@@ -71,19 +94,21 @@ export default function Navbar() {
         
         {/* Desktop Navigation Links */}
         <nav className={`hidden lg:flex items-center gap-8 tracking-widest uppercase text-[11px] font-medium transition-colors duration-500 ${
-          isScrolled ? "text-[#1a1a1a]" : "text-white"
+          isScrolled || isMegaMenuOpen ? "text-[#1a1a1a]" : "text-white"
         }`}>
           {navLinks.map((link) => (
-            <Link 
+            <div 
               key={link.name} 
-              href={link.href} 
-              className="flex items-center gap-1 hover:opacity-70 transition-all group"
+              className="flex items-center gap-1 hover:opacity-70 transition-all group py-2 cursor-pointer"
+              onMouseEnter={() => setIsMegaMenuOpen(true)}
             >
               {link.name}
-              <ChevronDown className={`w-3 h-3 transition-colors duration-500 ${
-                isScrolled ? "text-gray-400 group-hover:text-gray-500" : "text-white/70 group-hover:text-white"
+              <ChevronDown className={`w-3 h-3 transition-all duration-300 ${
+                isMegaMenuOpen ? "rotate-180" : ""
+              } ${
+                isScrolled || isMegaMenuOpen ? "text-gray-400 group-hover:text-gray-500" : "text-white/70 group-hover:text-white"
               }`} />
-            </Link>
+            </div>
           ))}
         </nav>
 
@@ -96,17 +121,52 @@ export default function Navbar() {
           <motion.span 
             animate={isOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
             className={`w-6 h-[1.5px] block transition-colors duration-500 ${
-              isScrolled || isOpen ? "bg-black" : "bg-white"
+              isScrolled || isOpen || isMegaMenuOpen ? "bg-black" : "bg-white"
             }`}
           />
           <motion.span 
             animate={isOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
             className={`w-6 h-[1.5px] block transition-colors duration-500 ${
-              isScrolled || isOpen ? "bg-black" : "bg-white"
+              isScrolled || isOpen || isMegaMenuOpen ? "bg-black" : "bg-white"
             }`}
           />
         </button>
       </div>
+
+      {/* Megamenu Desktop */}
+      <AnimatePresence>
+        {isMegaMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="hidden lg:block w-full bg-white border-t border-gray-100 overflow-hidden"
+          >
+            <div className="max-w-7xl mx-auto grid grid-cols-4 gap-8 p-12 md:p-16">
+              {navLinks.map((category) => (
+                <div key={category.title} className="flex flex-col gap-6">
+                  <h4 className="text-[11px] font-bold tracking-[0.2em] text-black uppercase">
+                    {category.title}
+                  </h4>
+                  <ul className="flex flex-col gap-4">
+                    {category.subcategories.map((sub) => (
+                      <li key={sub}>
+                        <Link 
+                          href="#" 
+                          className="text-sm font-light tracking-wide text-gray-700 hover:text-black hover:translate-x-1 transition-all inline-block"
+                        >
+                          {sub}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -118,23 +178,33 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed inset-0 top-[84px] md:top-[96px] bg-white z-40 flex flex-col px-8 py-12 lg:hidden"
           >
-            <nav className="flex flex-col gap-10">
+            <nav className="flex flex-col gap-10 overflow-y-auto">
               {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-xl md:text-2xl font-light tracking-[0.25em] uppercase text-[#1a1a1a] flex items-center justify-between"
+                <div key={link.name} className="flex flex-col gap-4">
+                  <button
+                    onClick={() => setActiveMobileAccordion(activeMobileAccordion === link.name ? null : link.name)}
+                    className="text-lg md:text-xl font-light tracking-[0.25em] uppercase text-[#1a1a1a] flex items-center justify-between w-full"
                   >
                     {link.name}
-                    <ChevronDown className="w-5 h-5 text-gray-300" />
-                  </Link>
-                </motion.div>
+                    <ChevronDown className={`w-5 h-5 text-gray-300 transition-transform ${activeMobileAccordion === link.name ? "rotate-180" : ""}`} />
+                  </button>
+                  <AnimatePresence>
+                    {activeMobileAccordion === link.name && (
+                      <motion.ul
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="flex flex-col gap-3 pl-4 overflow-hidden"
+                      >
+                        {link.subcategories.map((sub) => (
+                          <li key={sub}>
+                            <Link href="#" className="text-sm text-gray-500 font-light tracking-wider">{sub}</Link>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
             </nav>
             
