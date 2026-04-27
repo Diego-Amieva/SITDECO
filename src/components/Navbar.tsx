@@ -9,15 +9,11 @@ import logoSvg from "@/assets/logo.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -36,13 +32,15 @@ export default function Navbar() {
   return (
     <header 
       className={`w-full fixed top-0 z-50 transition-all duration-500 ease-in-out flex flex-col ${
-        isVisible 
-          ? "opacity-100 translate-y-0 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100" 
-          : "opacity-0 -translate-y-full pointer-events-none"
+        isScrolled 
+          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100" 
+          : "bg-transparent shadow-none border-transparent"
       }`}
     >
       {/* Top Bar */}
-      <div className="w-full bg-black text-white px-6 md:px-12 py-2 flex items-center justify-between text-xs">
+      <div className={`w-full transition-colors duration-500 px-6 md:px-12 py-2 flex items-center justify-between text-xs ${
+        isScrolled ? "bg-black text-white" : "bg-black/20 text-white backdrop-blur-sm"
+      }`}>
         <div className="flex items-center">
           <button aria-label="Buscar" className="hover:text-gray-300 transition-colors">
             <Search className="w-4 h-4" />
@@ -55,7 +53,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Bar */}
-      <div className="w-full px-6 md:px-12 py-4 flex items-center justify-between relative z-50">
+      <div className={`w-full px-6 md:px-12 py-4 flex items-center justify-between relative z-50 transition-colors duration-500`}>
         {/* Logo */}
         <Link href="/">
           <div className="relative h-7 md:h-10 w-24 md:w-40">
@@ -63,22 +61,28 @@ export default function Navbar() {
               src={logoSvg}
               alt="SITDECO Logo"
               fill
-              className="object-contain object-left"
+              className={`object-contain object-left transition-all duration-500 ${
+                isScrolled ? "" : "brightness-0 invert"
+              }`}
               priority
             />
           </div>
         </Link>
         
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8 text-[#1a1a1a] tracking-widest uppercase text-[11px] font-medium">
+        <nav className={`hidden lg:flex items-center gap-8 tracking-widest uppercase text-[11px] font-medium transition-colors duration-500 ${
+          isScrolled ? "text-[#1a1a1a]" : "text-white"
+        }`}>
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
               href={link.href} 
-              className="flex items-center gap-1 hover:text-gray-500 transition-colors group"
+              className="flex items-center gap-1 hover:opacity-70 transition-all group"
             >
               {link.name}
-              <ChevronDown className="w-3 h-3 text-gray-400 group-hover:text-gray-500 transition-colors" />
+              <ChevronDown className={`w-3 h-3 transition-colors duration-500 ${
+                isScrolled ? "text-gray-400 group-hover:text-gray-500" : "text-white/70 group-hover:text-white"
+              }`} />
             </Link>
           ))}
         </nav>
@@ -91,11 +95,15 @@ export default function Navbar() {
         >
           <motion.span 
             animate={isOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
-            className="w-6 h-[1.5px] bg-black block"
+            className={`w-6 h-[1.5px] block transition-colors duration-500 ${
+              isScrolled || isOpen ? "bg-black" : "bg-white"
+            }`}
           />
           <motion.span 
             animate={isOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
-            className="w-6 h-[1.5px] bg-black block"
+            className={`w-6 h-[1.5px] block transition-colors duration-500 ${
+              isScrolled || isOpen ? "bg-black" : "bg-white"
+            }`}
           />
         </button>
       </div>
