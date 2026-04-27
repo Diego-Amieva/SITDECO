@@ -27,12 +27,12 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-light text-white tracking-[0.2em] leading-snug mb-10 uppercase">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-white tracking-[0.2em] leading-snug mb-10 uppercase">
           Mobiliario Para <br className="hidden md:block" />
           Proyectos <br className="hidden md:block" />
           Excepcionales
         </h1>
-        <button className="flex items-center gap-3 border border-white/80 bg-black/20 backdrop-blur-sm text-white px-10 py-4 tracking-widest text-sm hover:bg-white hover:text-black transition-all duration-300 uppercase group">
+        <button className="flex items-center gap-3 border border-white/80 bg-black/20 backdrop-blur-sm text-white px-10 py-4 tracking-widest text-sm font-semibold hover:bg-white hover:text-black transition-all duration-300 uppercase group">
           <BookOpen className="w-4 h-4 transition-transform group-hover:scale-110" />
           DESCARGAR CATÁLOGO
         </button>

@@ -28,7 +28,7 @@ export default function WhyChooseUs() {
   return (
     <section className="w-full bg-white py-16 md:py-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-2xl md:text-4xl font-light tracking-[0.2em] uppercase text-[#1a1a1a] mb-12">
+        <h2 className="text-center text-2xl md:text-4xl font-semibold tracking-[0.2em] uppercase text-[#1a1a1a] mb-12">
           LO QUE NOS HACE ÚNICOS
         </h2>
         

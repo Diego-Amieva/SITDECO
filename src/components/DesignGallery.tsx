@@ -57,7 +57,7 @@ export default function DesignGallery() {
 
       <div className="absolute inset-0 bg-black/50 z-0" />
       
-      <h2 className="text-white text-3xl md:text-5xl font-light tracking-[0.3em] z-10 text-center mb-4 uppercase">
+      <h2 className="text-white text-3xl md:text-5xl font-semibold tracking-[0.3em] z-10 text-center mb-4 uppercase">
         DISEÑO QUE PERDURA
       </h2>
       <div className="z-10 w-16 h-[1px] bg-white/50" />
