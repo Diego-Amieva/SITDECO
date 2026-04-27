@@ -13,9 +13,9 @@ export default function Hero() {
           loop
           playsInline
           poster={heroImage.src}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover"
         >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          <source src="/videos/landing_hero_stideco.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/40" />
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, ChevronDown } from "lucide-react";
@@ -9,6 +9,20 @@ import logoSvg from "@/assets/logo.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -20,7 +34,13 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100 flex flex-col">
+    <header 
+      className={`w-full fixed top-0 z-50 transition-all duration-500 ease-in-out flex flex-col ${
+        isVisible 
+          ? "opacity-100 translate-y-0 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100" 
+          : "opacity-0 -translate-y-full pointer-events-none"
+      }`}
+    >
       {/* Top Bar */}
       <div className="w-full bg-black text-white px-6 md:px-12 py-2 flex items-center justify-between text-xs">
         <div className="flex items-center">
@@ -35,7 +55,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Bar */}
-      <div className="w-full px-6 md:px-12 py-4 flex items-center justify-between bg-white relative z-50">
+      <div className="w-full px-6 md:px-12 py-4 flex items-center justify-between relative z-50">
         {/* Logo */}
         <Link href="/">
           <div className="relative h-7 md:h-10 w-24 md:w-40">
