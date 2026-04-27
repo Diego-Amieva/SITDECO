@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Features from "@/components/Features";
 import CategoryGrid from "@/components/CategoryGrid";
-import ProductCarousel from "@/components/ProductCarousel";
+import FeaturedProducts from "@/components/FeaturedProducts";
 import DesignGallery from "@/components/DesignGallery";
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
       <DesignGallery />
 
       <CategoryGrid />
-      <ProductCarousel />
+      <FeaturedProducts />
       
       {/* Stay in touch section */}
       <section className="bg-[#f8f8f8] py-24 px-6 text-center">
