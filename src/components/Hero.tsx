@@ -1,21 +1,22 @@
 "use client";
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import heroImage from '@/assets/placeholders/hero_dining_sunset.png';
 
 export default function Hero() {
   return (
-    <section className="relative h-[80vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image
-          src={heroImage}
-          alt="Luxury outdoor dining set at sunset"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroImage.src}
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
