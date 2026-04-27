@@ -69,9 +69,21 @@ export default function Navbar() {
             <Search className="w-4 h-4" />
           </button>
         </div>
-        <div className="flex items-center gap-2 tracking-wide text-[9px] sm:text-xs">
-          <span>🇲🇽</span>
-          <span className="uppercase font-light tracking-wider">Hecho en México</span>
+        
+        <div className="flex items-center gap-6">
+          {/* Email link */}
+          <a 
+            href="mailto:ventas@sitdeco.com" 
+            className="hidden sm:flex items-center gap-2 hover:text-gray-300 transition-colors tracking-widest font-light"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            <span className="uppercase text-[10px]">ventas@sitdeco.com</span>
+          </a>
+
+          <div className="flex items-center gap-2 tracking-wide text-[9px] sm:text-xs">
+            <span>🇲🇽</span>
+            <span className="uppercase font-light tracking-wider">Hecho en México</span>
+          </div>
         </div>
       </div>
 

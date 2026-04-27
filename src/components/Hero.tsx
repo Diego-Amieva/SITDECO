@@ -31,8 +31,9 @@ export default function Hero() {
           Proyectos <br className="hidden md:block" />
           Excepcionales
         </h1>
-        <button className="border border-white/80 bg-black/20 backdrop-blur-sm text-white px-10 py-4 tracking-widest text-sm hover:bg-white hover:text-black transition-all duration-300 uppercase">
-          Explora la Colección
+        <button className="flex items-center gap-3 border border-white/80 bg-black/20 backdrop-blur-sm text-white px-10 py-4 tracking-widest text-sm hover:bg-white hover:text-black transition-all duration-300 uppercase group">
+          DESCARGAR CATÁLOGO
+          <BookOpen className="w-4 h-4 transition-transform group-hover:scale-110" />
         </button>
       </motion.div>
     </section>
